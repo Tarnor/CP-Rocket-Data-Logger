@@ -14,6 +14,7 @@
 # Version 1.4 with IR Signals removed and Logic changed
 # Version 1.5 with File Writing enabled again, works very well.
 # Version 1.6 Clears out Microphone code for time saving
+# Version 1.7 Uploaded to GIT
 
 # Instructions
 # Reboot with Reset button pressed and slide switch to right (USB at top)
