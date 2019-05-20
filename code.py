@@ -3,6 +3,7 @@
 # Done for porting to M4 Feather at some point
 # Only use NeoPixel[0] for that reason
 
+# =======================================================================
 # Version 1.0 which includes
 # Updating Filename variable with time
 # Button to Pause/Unpause logging & Button to change Filename
@@ -14,13 +15,17 @@
 # Version 1.4 with IR Signals removed and Logic changed
 # Version 1.5 with File Writing enabled again, works very well.
 # Version 1.6 Clears out Microphone code for time saving
-# Version 1.7 Uploaded to GIT
-
+# Version 1.7 Final Version for Flight Testing 20 May 2019
+# =======================================================================
 # Instructions
+# -----------------------------------------------------------------------
 # Reboot with Reset button pressed and slide switch to right (USB at top)
 # Press Right Button to start/pause physics logging
+#       It Flashes Green if Logging, Violet if not logging
 # Press Left button to increment file name
-
+#       It flashes Cyan when name is incremented
+# =======================================================================
+# Dependencies:
 import board                            #Board Library
 import adafruit_lis3dh                  #accelerometer
 import time                             #time calculations
@@ -66,7 +71,6 @@ VIOLET = (50,0,50)
 
 # This routine logs the accelerometer data to the log file --------------------------------------:
 def logphysics():
-    # global logging_paused (Global Scope unnecessary I think?)
     try:
         with open("/"+log_fn, "a") as fp:
             # Read accelerometer values (in m / s ^ 2).  Returns a 3-tuple of x, y,z axis values.
@@ -74,7 +78,7 @@ def logphysics():
             x = x / 9.806           #Convert to G forces and Calibrate
             y = y / 9.806
             z = z / 9.806
-            
+
             t = time.monotonic()      # Get a timestamp
 
             if buttonA.value:           # Right Button Unpauses/Pauses Logging
